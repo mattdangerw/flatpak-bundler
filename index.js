@@ -59,7 +59,7 @@ function getOptionsWithDefaults (options, manifest) {
 function spawnWithLogging (options, command, args, allowFail) {
   return new Promise(function (resolve, reject) {
     logger(`$ ${command} ${args.join(' ')}`)
-    let child = childProcess.spawn(command, args, { cwd: options['working-dir'] })
+    let child = childProcess.spawn(command, args, { cwd: options['working-dir'], stdio: [0, 1, 2] })
     child.stdout.on('data', (data) => {
       logger(`1> ${data}`)
     })
